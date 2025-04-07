@@ -1,17 +1,14 @@
-import './App.css'
-
+import { Button } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-import { Link, Outlet } from 'react-router-dom';
+
 
 function App() {
-
   return (
     <>
-      
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -26,10 +23,9 @@ function App() {
             </Button>
           </Toolbar>
         </AppBar>
-
+        
         <Outlet />
       </Box>
-      
     </>
   )
 }

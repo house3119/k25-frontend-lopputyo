@@ -4,7 +4,7 @@ export type Customer = {
   streetAdress: string;
   postCode: string;
   city: string;
-  emal: string;
+  email: string;
   phone: string;
   links: {
     self: string;

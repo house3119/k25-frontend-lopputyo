@@ -7,9 +7,9 @@ import dataService from "../services/data-service"
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
+
 export default function CustomerList() {
   const [customers, setCustomers] = useState<Customer[]>([ ]);
-
   const gridRef = useRef<AgGridReact<Customer>>(null);
 
   useEffect(() => {
