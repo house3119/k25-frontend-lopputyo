@@ -63,12 +63,14 @@ export default function TrainingList() {
 
   return (
     <div>
-      <div className="ag-theme-material" style={{width: "100%", height: "1000px"}}>
+      <h1 className="my-3">Trainings</h1>
+      <div className="ag-theme-material" style={{width: "100%"}}>
         <AgGridReact
           columnDefs={columnDefs}
           ref={gridRef} 
           rowData={trainings.map(training => training)}
           rowSelection="single"
+          domLayout="autoHeight"
         />
       </div>
     </div>

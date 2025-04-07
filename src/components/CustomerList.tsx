@@ -68,12 +68,14 @@ export default function CustomerList() {
 
   return (
     <div>
-      <div className="ag-theme-material" style={{width: "100%", height: "1000px"}}>
+      <h1 className="my-3">Customers</h1>
+      <div className="ag-theme-material" style={{width: "100%"}}>
         <AgGridReact
           columnDefs={columnDefs}
           ref={gridRef} 
           rowData={customers.map(customer => customer)}
           rowSelection="single"
+          domLayout="autoHeight"
         />
       </div>
     </div>

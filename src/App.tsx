@@ -23,8 +23,10 @@ function App() {
             </Button>
           </Toolbar>
         </AppBar>
+        <div className='container'>
+          <Outlet />
+        </div>
         
-        <Outlet />
       </Box>
     </>
   )
