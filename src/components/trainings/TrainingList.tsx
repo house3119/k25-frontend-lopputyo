@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Training } from "../../models/training";
 import { format } from "date-fns";
 import dataService from "../../services/data-service";
+import AddTraining from "./AddTraining";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -64,7 +65,8 @@ export default function TrainingList() {
   return (
     <div>
       <h1 className="my-3">Trainings</h1>
-      <div className="ag-theme-material mb-5" style={{width: "100%"}}>
+      <AddTraining getTrainingData={getTrainingData} />
+      <div className="ag-theme-material mb-5 mt-2" style={{width: "100%"}}>
         <AgGridReact
           columnDefs={columnDefs}
           ref={gridRef} 

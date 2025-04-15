@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import TrainingList from "./components/trainings/TrainingList.tsx";
 import CustomerList from "./components/customers/CustomerList.tsx";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { fi } from "date-fns/locale";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fi}>
+      <RouterProvider router={router} />
+    </LocalizationProvider>
   </StrictMode>
 );

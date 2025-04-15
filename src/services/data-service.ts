@@ -1,5 +1,6 @@
 import { Customer } from "../models/customer";
 import { NewCustomer } from "../models/new_customer";
+import { NewTraining } from "../models/new_training";
 import { Training } from "../models/training";
 
 const apiUrl = 'https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api';
@@ -125,9 +126,42 @@ const getAllTrainings = async () : Promise<Training[]> => {
   return await Promise.all(finalArray);
 }
 
+
+const addTraining = async (newTraining: NewTraining) => {
+  try {
+    const response = await fetch(`${apiUrl}/trainings`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({...newTraining, date: newTraining.date?.toISOString()}),
+    });
+
+    if (response.status != 201) {
+      return ({
+        status: response.status,
+        message: "Error during saving training. Please try again."
+      })
+
+    } else {
+      return ({
+        status: 201,
+        message: "OK"
+      })
+    }
+
+  } catch (error) {
+    console.error(error);
+    return ({
+      status: 500,
+      message: "Unexpected error"
+    })
+  }
+}
+
+
 export default {
   getAllCustomers,
   getAllTrainings,
   addCustomer,
-  editCustomer
+  editCustomer,
+  addTraining
 }
