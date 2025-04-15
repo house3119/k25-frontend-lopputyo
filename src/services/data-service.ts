@@ -3,7 +3,6 @@ import { Training } from "../models/training";
 
 const apiUrl = 'https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api';
 
-
 const getAllCustomers = async () : Promise<Customer[]> => {
     const response = await fetch(`${apiUrl}/customers`);
     const data = await response.json();
@@ -62,7 +61,6 @@ const getAllTrainings = async () : Promise<Training[]> => {
 
   return await Promise.all(finalArray);
 }
-
 
 export default {
   getAllCustomers,

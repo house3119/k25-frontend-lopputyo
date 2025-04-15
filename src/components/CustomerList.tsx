@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Customer } from "../models/customer"
 import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModule, ModuleRegistry, ColDef } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry, ColDef, ICellRendererParams } from 'ag-grid-community';
 import { useRef } from "react";
 import dataService from "../services/data-service"
+import AddCustomer from "./AddCustomer";
+import DeleteCustomerBtn from "./DeleteCustomerBtn";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -63,13 +65,23 @@ export default function CustomerList() {
       filter: true,
       floatingFilter: true,
       flex: 1
+    },
+    {
+      cellRenderer: (params: ICellRendererParams<Customer>) => DeleteCustomerBtn (
+        params.data?.links.self as string,
+        params.data?.firstName as string,
+        params.data?.lastName as string,
+        getCustomerData
+      ),
+      flex: 1
     }
   ]);
 
   return (
     <div>
       <h1 className="my-3">Customers</h1>
-      <div className="ag-theme-material" style={{width: "100%"}}>
+      <AddCustomer getCustomerData={getCustomerData} />
+      <div className="ag-theme-material mb-5 mt-2" style={{width: "100%"}}>
         <AgGridReact
           columnDefs={columnDefs}
           ref={gridRef} 

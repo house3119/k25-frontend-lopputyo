@@ -64,7 +64,7 @@ export default function TrainingList() {
   return (
     <div>
       <h1 className="my-3">Trainings</h1>
-      <div className="ag-theme-material" style={{width: "100%"}}>
+      <div className="ag-theme-material mb-5" style={{width: "100%"}}>
         <AgGridReact
           columnDefs={columnDefs}
           ref={gridRef} 
