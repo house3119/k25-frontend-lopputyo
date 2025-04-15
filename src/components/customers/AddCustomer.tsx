@@ -1,16 +1,16 @@
-import { ChangeEvent, useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import { DialogContentText } from '@mui/material';
-import { NewCustomer, emptyNewCustomer, NewCustomerProps } from '../models/new_customer';
+import { ChangeEvent, useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import { DialogContentText } from "@mui/material";
+import { NewCustomer, emptyNewCustomer, NewCustomerProps } from "../../models/new_customer";
+import dataService from "../../services/data-service";
 
 export default function AddCustomer(props: NewCustomerProps) {
-  const baseUrl = 'https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api';
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [newCustomer, setNewCustomer] = useState<NewCustomer>(emptyNewCustomer);
 
@@ -20,33 +20,26 @@ export default function AddCustomer(props: NewCustomerProps) {
 
   const handleClose = () => {
     setOpen(false);
-    setErrorMessage('');
+    setErrorMessage("");
     setNewCustomer(emptyNewCustomer);
   };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setNewCustomer({...newCustomer, [event.target.name]: event.target.value})
-  }
-  
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setNewCustomer({ ...newCustomer, [event.target.name]: event.target.value });
+  };
+
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    try {
-      const response = await fetch(`${baseUrl}/customers`, {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify(newCustomer)
-      })
-      if (response.status != 201) {
-        setErrorMessage('Error during saving car. Please try again.')
-      } else {
-        handleClose();
-        props.getCustomerData();
-      }
-    } catch(error) {
-      console.error(error)
+    const result = await dataService.addCustomer(newCustomer);
+    if (result.status != 201) {
+      setErrorMessage(result.message);
+    } else {
+      handleClose();
+      props.getCustomerData();
     }
-  }
+  };
 
   return (
     <>
@@ -59,18 +52,17 @@ export default function AddCustomer(props: NewCustomerProps) {
         onClose={handleClose}
         slotProps={{
           paper: {
-            component: 'form',
-            onSubmit: (event: React.FormEvent<HTMLFormElement>) => onFormSubmit(event)
+            component: "form",
+            onSubmit: (event: React.FormEvent<HTMLFormElement>) =>
+              onFormSubmit(event),
           },
         }}
       >
         <DialogTitle>Add New Customer</DialogTitle>
         <DialogContent>
-          {errorMessage && 
-            <DialogContentText color='error'>
-              {errorMessage}
-            </DialogContentText>
-          }
+          {errorMessage && (
+            <DialogContentText color="error">{errorMessage}</DialogContentText>
+          )}
           <TextField
             autoFocus
             required
@@ -78,7 +70,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="firstname"
             value={newCustomer.firstname}
             label="First name"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="text"
             fullWidth
             variant="standard"
@@ -89,7 +81,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="lastname"
             value={newCustomer.lastname}
             label="Last name"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="text"
             fullWidth
             variant="standard"
@@ -100,7 +92,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="email"
             value={newCustomer.email}
             label="Email"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="email"
             fullWidth
             variant="standard"
@@ -111,7 +103,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="phone"
             value={newCustomer.phone}
             label="Phone"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="text"
             fullWidth
             variant="standard"
@@ -122,7 +114,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="streetaddress"
             value={newCustomer.streetaddress}
             label="Street address"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="text"
             fullWidth
             variant="standard"
@@ -133,7 +125,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="postcode"
             value={newCustomer.postcode}
             label="Postcode"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="text"
             fullWidth
             variant="standard"
@@ -144,7 +136,7 @@ export default function AddCustomer(props: NewCustomerProps) {
             name="city"
             value={newCustomer.city}
             label="City"
-            onChange={event => handleInputChange(event)}
+            onChange={(event) => handleInputChange(event)}
             type="text"
             fullWidth
             variant="standard"

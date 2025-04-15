@@ -1,7 +1,9 @@
 import { Customer } from "../models/customer";
+import { NewCustomer } from "../models/new_customer";
 import { Training } from "../models/training";
 
 const apiUrl = 'https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api';
+
 
 const getAllCustomers = async () : Promise<Customer[]> => {
     const response = await fetch(`${apiUrl}/customers`);
@@ -25,6 +27,67 @@ const getAllCustomers = async () : Promise<Customer[]> => {
       })
     })
     return customerArray;
+}
+
+const addCustomer = async (newCustomer: NewCustomer) => {
+  try {
+    const response = await fetch(`${apiUrl}/customers`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newCustomer),
+    });
+
+    if (response.status != 201) {
+      return ({
+        status: response.status,
+        message: "Error during saving customer. Please try again."
+      })
+
+    } else {
+      return ({
+        status: 201,
+        message: "OK"
+      })
+    }
+
+  } catch (error) {
+    console.error(error);
+    return ({
+      status: 500,
+      message: "Unexpected error"
+    })
+  }
+}
+
+
+const editCustomer = async (editUrl: string, editCustomer: NewCustomer) => {
+  try {
+    const response = await fetch(editUrl, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editCustomer),
+    });
+
+    if (response.status != 200) {
+      return ({
+        status: response.status,
+        message: "Error during saving customer. Please try again."
+      })
+
+    } else {
+      return ({
+        status: 200,
+        message: "OK"
+      })
+    }
+
+  } catch (error) {
+    console.error(error);
+    return ({
+      status: 500,
+      message: "Unexpected error"
+    })
+  }
 }
 
 
@@ -64,5 +127,7 @@ const getAllTrainings = async () : Promise<Training[]> => {
 
 export default {
   getAllCustomers,
-  getAllTrainings
+  getAllTrainings,
+  addCustomer,
+  editCustomer
 }

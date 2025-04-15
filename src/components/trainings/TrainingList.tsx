@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModule, ModuleRegistry, ColDef } from 'ag-grid-community';
 import { useRef } from "react";
-import { Training } from "../models/training";
+import { Training } from "../../models/training";
 import { format } from "date-fns";
-import dataService from "../services/data-service"
+import dataService from "../../services/data-service";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
