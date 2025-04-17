@@ -10,6 +10,7 @@ function App() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
+
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -23,6 +24,7 @@ function App() {
             </Button>
           </Toolbar>
         </AppBar>
+
         <div className='container'>
           <Outlet />
         </div>

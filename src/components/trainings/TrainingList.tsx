@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModule, ModuleRegistry, ColDef } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry, ColDef, ICellRendererParams } from 'ag-grid-community';
 import { useRef } from "react";
 import { Training } from "../../models/training";
 import { format } from "date-fns";
 import dataService from "../../services/data-service";
 import AddTraining from "./AddTraining";
+import DeleteTrainingBtn from "./DeleteTrainingBtn";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -59,6 +60,14 @@ export default function TrainingList() {
       cellRenderer: (data: {value: Date}) => {
         return format(data.value, "dd.MM.yyyy hh:mm")
       }
+    },
+    {
+      cellRenderer: (params: ICellRendererParams<Training>) =>
+        DeleteTrainingBtn(
+          params.data as Training,
+          getTrainingData
+        ),
+      flex: 1,
     }
   ]);
 
