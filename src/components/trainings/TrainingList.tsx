@@ -73,9 +73,7 @@ export default function TrainingList() {
 
   return (
     <div>
-      <h1 className="my-3">Trainings</h1>
-      <AddTraining getTrainingData={getTrainingData} />
-      <div className="ag-theme-material mb-5 mt-2" style={{width: "100%"}}>
+      <div className="ag-theme-material mb-3 mt-1" style={{width: "100%"}}>
         <AgGridReact
           columnDefs={columnDefs}
           ref={gridRef} 
@@ -84,6 +82,7 @@ export default function TrainingList() {
           domLayout="autoHeight"
         />
       </div>
+      <AddTraining getTrainingData={getTrainingData} />
     </div>
   )
 }
