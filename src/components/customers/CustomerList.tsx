@@ -12,6 +12,7 @@ import dataService from "../../services/data-service";
 import AddCustomer from "./AddCustomer";
 import DeleteCustomerBtn from "./DeleteCustomerBtn";
 import EditCustomer from "./EditCustomer";
+import ExportCustomersCsvBtn from "./ExportCustomersCsvBtn";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -92,6 +93,7 @@ export default function CustomerList() {
     <div>
       <h1 className="my-3">Customers</h1>
       <AddCustomer getCustomerData={getCustomerData} />
+      <ExportCustomersCsvBtn gridRefData={gridRef} />
       <div className="ag-theme-material mb-5 mt-2" style={{ width: "100%" }}>
         <AgGridReact
           columnDefs={columnDefs}
