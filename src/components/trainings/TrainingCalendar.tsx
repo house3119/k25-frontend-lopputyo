@@ -51,6 +51,7 @@ export default function TrainingCalendar() {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const EventItem = ({ training }) => {
   const { event } = training;
   return (
