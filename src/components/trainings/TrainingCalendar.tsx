@@ -8,30 +8,27 @@ import { Training } from '../../models/training';
 
 
 export default function TrainingCalendar() {
-    const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
 
+  useEffect(() => {
+    getTrainingData();
+  }, [])
 
-    useEffect(() => {
-      getTrainingData();
-    }, [])
-  
-    
-    const getTrainingData = async () => {
-      dataService.getAllTrainings2().then(result => {
-        setEvents(result.map((e: Training) => {
-          const date1 = new Date(e.date)
-          const date2 = new Date(e.date)
-          date2.setTime(date1.getTime() + (e.duration * 60 * 1000))
+  const getTrainingData = async () => {
+    dataService.getAllTrainings2().then(result => {
+      setEvents(result.map((e: Training) => {
+        const date1 = new Date(e.date)
+        const date2 = new Date(e.date)
+        date2.setTime(date1.getTime() + (e.duration * 60 * 1000))
 
-          return({
-              title: `${e.activity} / ${e.customerFirstName} ${e.customerLastName}`,
-              start: date1,
-              end: date2
-            })
-        }))
-      });
-    }
-
+        return({
+            title: `${e.activity} / ${e.customerFirstName} ${e.customerLastName}`,
+            start: date1,
+            end: date2
+          })
+      }))
+    });
+  }
 
   return(
     <>
@@ -45,8 +42,7 @@ export default function TrainingCalendar() {
         plugins={[ dayGridPlugin, interactionPlugin ]} 
         views={["dayGridMonth", "dayGridWeek", "dayGridDay"]}
         eventContent={event => <EventItem training={event} />}
-        />
-        
+      />
     </>
   )
 }
