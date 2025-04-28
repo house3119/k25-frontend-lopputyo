@@ -91,6 +91,25 @@ const editCustomer = async (editUrl: string, editCustomer: NewCustomer) => {
   }
 }
 
+const getAllTrainings2 = async () => {
+  const response = await fetch(`${apiUrl}/gettrainings`);
+  const data = await response.json();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const trainingArray = data.map((t: any) => {
+    return ({
+      customerFirstName: t.customer?.firstname || '-',
+      customerLastName: t.customer?.lastname || '-',
+      activity: t.activity,
+      duration: t.duration,
+      date: t.date,
+      id: t.id
+    })
+  })
+
+  return trainingArray;
+}
+
 
 const getAllTrainings = async () : Promise<Training[]> => {
   const response = await fetch(`${apiUrl}/trainings`);
@@ -161,6 +180,7 @@ const addTraining = async (newTraining: NewTraining) => {
 export default {
   getAllCustomers,
   getAllTrainings,
+  getAllTrainings2,
   addCustomer,
   editCustomer,
   addTraining

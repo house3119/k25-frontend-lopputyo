@@ -4,8 +4,5 @@ export type Training = {
   date: Date;
   customerFirstName: string;
   customerLastName: string;
-  links: {
-    self: string;
-    customer: string;
-  }
+  id: string;
 }

@@ -22,7 +22,7 @@ export default function TrainingList() {
 
   
   const getTrainingData = async () => {
-    setTrainings(await dataService.getAllTrainings());
+    setTrainings(await dataService.getAllTrainings2());
   }
   
 
