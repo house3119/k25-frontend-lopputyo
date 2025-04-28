@@ -42,6 +42,7 @@ export default function AddTraining(props: NewTrainingProps) {
   };
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(newTraining)
     event.preventDefault();
     const result = await dataService.addTraining(newTraining);
     if (result.status != 201) {
@@ -131,6 +132,7 @@ export default function AddTraining(props: NewTrainingProps) {
             type="number"
             fullWidth
             variant="standard"
+            inputProps={{ min: 1, max: 999 }}
           />
 
         </DialogContent>

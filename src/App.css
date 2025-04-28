@@ -1,0 +1,12 @@
+
+.fc .fc-button-primary {
+  background-color: #FFFFFF!important;
+  color: #3a98b4!important;
+  border-color: #3a98b4!important;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: ghostwhite!important;
+  color: #1f677d!important;
+  border-color: #1f677d!important;
+}

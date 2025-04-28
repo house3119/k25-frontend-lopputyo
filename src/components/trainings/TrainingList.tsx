@@ -58,7 +58,7 @@ export default function TrainingList() {
       floatingFilter: true,
       flex: 1,
       cellRenderer: (data: {value: Date}) => {
-        return format(data.value, "dd.MM.yyyy hh:mm")
+        return format(data.value, "dd.MM.yyyy HH:mm")
       }
     },
     {

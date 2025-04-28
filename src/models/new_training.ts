@@ -7,7 +7,7 @@ export type NewTraining = {
 
 export const emptyNewTraining:NewTraining = {
   activity: '',
-  duration: null,
+  duration: 0,
   date: null,
   customer: ''
 }
