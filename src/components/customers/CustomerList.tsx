@@ -31,7 +31,7 @@ export default function CustomerList() {
   const [columnDefs] = useState<ColDef<Customer>[]>([
     {
       field: "firstName",
-      sortable: false,
+      sortable: true,
       filter: true,
       floatingFilter: true,
       flex: 1,

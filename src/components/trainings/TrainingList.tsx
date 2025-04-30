@@ -28,7 +28,7 @@ export default function TrainingList() {
   const [columnDefs] = useState<ColDef<Training>[]>([
     {
       field: "customerFirstName",
-      sortable: false,
+      sortable: true,
       filter: true,
       floatingFilter: true,
       flex: 1
