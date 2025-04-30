@@ -6,7 +6,6 @@ import dataService from '../../services/data-service';
 import { format } from "date-fns";
 import { Training } from '../../models/training';
 
-
 export default function TrainingCalendar() {
   const [events, setEvents] = useState([]);
 

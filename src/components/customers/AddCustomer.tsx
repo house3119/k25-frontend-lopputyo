@@ -29,10 +29,11 @@ export default function AddCustomer(props: NewCustomerProps) {
   ) => {
     setNewCustomer({ ...newCustomer, [event.target.name]: event.target.value });
   };
-
+  
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = await dataService.addCustomer(newCustomer);
+
     if (result.status != 201) {
       setErrorMessage(result.message);
     } else {

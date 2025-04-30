@@ -10,7 +10,6 @@ import DeleteTrainingBtn from "./DeleteTrainingBtn";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-
 export default function TrainingList() {
   const [trainings, setTrainings] = useState<Training[]>([ ]);
 

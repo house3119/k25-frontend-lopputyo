@@ -5,7 +5,7 @@ import { Training } from "../models/training";
 
 const apiUrl = 'https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api';
 
-
+// Fetches and returns all customers in array of Customers
 const getAllCustomers = async () : Promise<Customer[]> => {
     const response = await fetch(`${apiUrl}/customers`);
     const data = await response.json();
@@ -30,6 +30,8 @@ const getAllCustomers = async () : Promise<Customer[]> => {
     return customerArray;
 }
 
+
+// Saves new customer to database, returns response status and message
 const addCustomer = async (newCustomer: NewCustomer) => {
   try {
     const response = await fetch(`${apiUrl}/customers`, {
@@ -61,6 +63,7 @@ const addCustomer = async (newCustomer: NewCustomer) => {
 }
 
 
+// Updates a customers information and returns response status and message
 const editCustomer = async (editUrl: string, editCustomer: NewCustomer) => {
   try {
     const response = await fetch(editUrl, {
@@ -91,6 +94,8 @@ const editCustomer = async (editUrl: string, editCustomer: NewCustomer) => {
   }
 }
 
+
+// Fetches information of all trainings (including cutomer information)
 const getAllTrainings2 = async () => {
   const response = await fetch(`${apiUrl}/gettrainings`);
   const data = await response.json();
@@ -111,6 +116,9 @@ const getAllTrainings2 = async () => {
 }
 
 
+// First implementation of fetch all trainings
+// NOT USED IN CURRENTLY
+//
 const getAllTrainings = async () : Promise<Training[]> => {
   const response = await fetch(`${apiUrl}/trainings`);
   const data = await response.json();
@@ -146,6 +154,7 @@ const getAllTrainings = async () : Promise<Training[]> => {
 }
 
 
+// Saves new training to database, returns response status and message
 const addTraining = async (newTraining: NewTraining) => {
   try {
     const response = await fetch(`${apiUrl}/trainings`, {

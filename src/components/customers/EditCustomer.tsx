@@ -10,10 +10,7 @@ import { NewCustomer } from "../../models/new_customer";
 import { Customer } from "../../models/customer";
 import dataService from "../../services/data-service";
 
-export default function EditCustomer(
-  customer: Customer,
-  getCustomerData: () => void
-) {
+export default function EditCustomer(customer: Customer, getCustomerData: () => void) {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [editCustomer, setEditCustomer] = useState<NewCustomer>({
